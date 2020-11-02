@@ -1,5 +1,4 @@
 parcelRequire = (function (e, r, t, n) {
-  console.log("Initiating process"),
   var i,
     o = "function" == typeof parcelRequire && parcelRequire,
     u = "function" == typeof require && require;
