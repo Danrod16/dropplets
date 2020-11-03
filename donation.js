@@ -191,7 +191,7 @@ parcelRequire = (function (e, r, t, n) {
               metadata: a,
               idealBank: o,
               return_url:
-                "https://www.saveachildsheartnederland.nl/kom-in-actie/doneer/payment-process",
+                "https://www.saveachildsheartnederland.nl/kom-in-actie/doneer/bedankt-voor-je-donatie",
             }),
             s = u.source,
             l = u.error;
@@ -261,7 +261,7 @@ parcelRequire = (function (e, r, t, n) {
           d = (0, a.default)();
         let l = "one-time",
           c = "plan_FUIxzfuPl4eLAs",
-          m = 100,
+          m = 1000,
           u = "card";
         async function h(e) {
           try {
