@@ -191,7 +191,7 @@ parcelRequire = (function (e, r, t, n) {
               metadata: a,
               idealBank: o,
               return_url:
-                "https://www.saveachildsheartnederland.nl/kom-in-actie/doneer/bedankt-voor-je-donatie",
+                "https://www.saveachildsheartnederland.nl/kom-in-actie/doneer/payment-process",
             }),
             s = u.source,
             l = u.error;
