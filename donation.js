@@ -134,7 +134,7 @@ parcelRequire = (function (e, r, t, n) {
             d.addEventListener("change", function (e) {
               e.error ? i(e.error.message, "cardCvc") : s("cardCvc");
             }),
-            { stripe: t.default, idealBank: u, cardElement: a }
+            { stripe: t.default, idealBank: u, cardElement: a}
           );
         }
       },
@@ -303,6 +303,7 @@ parcelRequire = (function (e, r, t, n) {
                   newsletterSignup: e.newsletterSignup,
                   description: PAYMENT_DESCRIPTION,
                   subscriptionPlanId: c,
+                  amount: a,
                   recurring: !0,
                   REDIRECT_URL: REDIRECT_URL,
                 },
