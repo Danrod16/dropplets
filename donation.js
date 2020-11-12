@@ -281,10 +281,13 @@ parcelRequire = (function (e, r, t, n) {
                     paymentType: "card",
                     paymentMethodId: a.setupIntent.payment_method,
                     subscriptionPlanId: c,
+                    amount: 2000,
                     email: e.email,
                     name: e.fullName,
                     metadata: { newsletterSignup: e.newsletterSignup },
                   }
+                  console.log("this is 289t")
+                  console.log(t)
                 );
                 if ("incomplete" === t.data.status) {
                   const e = await s.handleCardPayment(
@@ -303,7 +306,6 @@ parcelRequire = (function (e, r, t, n) {
                   newsletterSignup: e.newsletterSignup,
                   description: PAYMENT_DESCRIPTION,
                   subscriptionPlanId: c,
-                  amount: a,
                   recurring: !0,
                   REDIRECT_URL: REDIRECT_URL,
                 },
@@ -311,6 +313,8 @@ parcelRequire = (function (e, r, t, n) {
                 s = i.source,
                 r = i.error;
               s
+              console.log("This is n315")
+              console.log(n)
                 ? (document.location.href = s.redirect.url)
                 : r && (d.formErrors.textContent = r.message);
             }
@@ -390,6 +394,8 @@ parcelRequire = (function (e, r, t, n) {
                         description: PAYMENT_DESCRIPTION,
                       }
                     )
+                    console.log("This is amount: e")
+                    console.log(e)
                   );
               }
             } else {
