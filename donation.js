@@ -394,9 +394,9 @@ parcelRequire = (function (e, r, t, n) {
                         description: PAYMENT_DESCRIPTION,
                       }
                     )
+                  );
                     console.log("This is amount: e")
                     console.log(e)
-                  );
               }
             } else {
               const s = {
