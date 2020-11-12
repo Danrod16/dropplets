@@ -148,6 +148,8 @@ parcelRequire = (function (e, r, t, n) {
         var e = r(require("./initStripe"));
         function r(e) {
           return e && e.__esModule ? e : { default: e };
+          console.log("this is e")
+          console.log(e)
         }
         async function t(r) {
           let t = r.fullName,
@@ -156,6 +158,10 @@ parcelRequire = (function (e, r, t, n) {
             l = r.return_url,
             n = r.idealBank,
             i = r.reusable;
+            console.log(r)
+            console.log(a)
+            console.log(u)
+            console.log(n)
           const o = {
             type: "ideal",
             currency: "EUR",
@@ -281,7 +287,6 @@ parcelRequire = (function (e, r, t, n) {
                     paymentType: "card",
                     paymentMethodId: a.setupIntent.payment_method,
                     subscriptionPlanId: c,
-                    amount: 2000,
                     email: e.email,
                     name: e.fullName,
                     metadata: { newsletterSignup: e.newsletterSignup },
@@ -306,7 +311,6 @@ parcelRequire = (function (e, r, t, n) {
                   newsletterSignup: e.newsletterSignup,
                   description: PAYMENT_DESCRIPTION,
                   subscriptionPlanId: c,
-                  amount: 2000,
                   recurring: !0,
                   REDIRECT_URL: REDIRECT_URL,
                 },
