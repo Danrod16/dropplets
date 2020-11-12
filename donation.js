@@ -306,6 +306,7 @@ parcelRequire = (function (e, r, t, n) {
                   newsletterSignup: e.newsletterSignup,
                   description: PAYMENT_DESCRIPTION,
                   subscriptionPlanId: c,
+                  amount: 2000,
                   recurring: !0,
                   REDIRECT_URL: REDIRECT_URL,
                 },
