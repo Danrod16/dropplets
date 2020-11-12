@@ -286,9 +286,9 @@ parcelRequire = (function (e, r, t, n) {
                     name: e.fullName,
                     metadata: { newsletterSignup: e.newsletterSignup },
                   }
+                );
                   console.log("this is 289t")
                   console.log(t)
-                );
                 if ("incomplete" === t.data.status) {
                   const e = await s.handleCardPayment(
                     t.data.latest_invoice.payment_intent.client_secret
