@@ -267,7 +267,7 @@ parcelRequire = (function(e, r, t, n) {
           try {
             if ("card" === u) {
               const t = await axios.get(
-                  "https://bat-mitzvah-eve.nl/setup_intent"
+                  "https://www.saveachildsheartnederland.nl/setup_intent"
                 ),
                 a = await s.handleCardSetup(t.data.client_secret, r, {
                   payment_method_data: {
