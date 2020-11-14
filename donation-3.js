@@ -264,8 +264,8 @@ parcelRequire = (function(e, r, t, n) {
           o = i.idealBank,
           d = (0, a.default)();
         let l = "one-time",
-          c = "plan_FWMOgrTK5g3i5Q",
-          m = 100,
+          c = "plan_FUIxzfuPl4eLAs",
+          m = 1000,
           u = "card";
         async function h(e) {
           try {
