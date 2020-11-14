@@ -146,6 +146,8 @@ parcelRequire = (function(e, r, t, n) {
         Object.defineProperty(exports, "__esModule", { value: !0 }),
           (exports.default = void 0);
         var e = r(require("./initStripe"));
+        console.log("This is initstripe")
+        console.log(e)
         function r(e) {
           return e && e.__esModule ? e : { default: e };
         }
