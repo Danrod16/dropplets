@@ -156,6 +156,7 @@ parcelRequire = (function(e, r, t, n) {
             l = r.return_url,
             n = r.idealBank,
             i = r.reusable;
+            console.log(r)
           const o = {
             type: "ideal",
             currency: "EUR",
