@@ -276,7 +276,7 @@ parcelRequire = (function(e, r, t, n) {
                 });
               if (a.setupIntent) {
                 const t = await axios.post(
-                  "https://bat-mitzvah-eve.nl/create_recurring",
+                  "https://www.saveachildsheartnederland.nl/create_recurring",
                   {
                     paymentType: "card",
                     paymentMethodId: a.setupIntent.payment_method,
@@ -339,7 +339,7 @@ parcelRequire = (function(e, r, t, n) {
                     (d.submitBtn.value = "An error occured."),
                     console.warn(e.error))
                   : axios
-                      .post("https://bat-mitzvah-eve.nl/confirm_payment", {
+                      .post("https://www.saveachildsheartnederland.nl/confirm_payment", {
                         paymentIntentId: e.paymentIntent.id,
                       })
                       .then(p)
@@ -380,7 +380,7 @@ parcelRequire = (function(e, r, t, n) {
                 (d.formErrors.textContent = ""),
                   p(
                     await axios.post(
-                      "https://bat-mitzvah-eve.nl/confirm_payment",
+                      "https://www.saveachildsheartnederland.nl/confirm_payment",
                       {
                         paymentMethodId: a.id,
                         amount: e,
