@@ -159,6 +159,7 @@ parcelRequire = (function(e, r, t, n) {
           const o = {
             type: "ideal",
             currency: "EUR",
+            amount: a,
             metadata: u,
             redirect: { return_url: l },
           };
