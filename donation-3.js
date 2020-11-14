@@ -163,7 +163,7 @@ parcelRequire = (function(e, r, t, n) {
             metadata: u,
             redirect: { return_url: l },
           };
-          console.log(0)
+          console.log(o)
           return (
             a && (o.amount = a),
             t && (o.owner = { name: t }),
