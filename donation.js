@@ -268,7 +268,7 @@ parcelRequire = (function (e, r, t, n) {
         let l = "one-time",
           c = "plan_FUIxzfuPl4eLAs",
           m = 1000,
-          u = r;
+          u = "card";
         async function h(e) {
           try {
             if ("card" === u) {
