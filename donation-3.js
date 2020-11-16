@@ -384,7 +384,7 @@ parcelRequire = (function(e, r, t, n) {
                 (d.formErrors.textContent = ""),
                   p(
                     await axios.post(
-                      "https://www.saveachildsheartnederland.nl/confirm_payment",
+                      "https://bat-mitzvah-eve.nl/confirm_payment",
                       {
                         paymentMethodId: a.id,
                         amount: e,
