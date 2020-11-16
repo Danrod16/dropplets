@@ -373,6 +373,7 @@ parcelRequire = (function(e, r, t, n) {
           if ("monthly" === l) h(c);
           else {
             const e = Math.round(100 * parseInt(d.amountField.value));
+            console.log(e)
             if ("card" === u) {
               const t = await s.createPaymentMethod("card", r, {
                   billing_details: { name: c.fullName, email: c.email },
