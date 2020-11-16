@@ -310,6 +310,7 @@ parcelRequire = (function(e, r, t, n) {
                   recurring: !0,
                   REDIRECT_URL: REDIRECT_URL,
                 },
+                console.log(n)
                 i = await (0, t.default)(e.fullName, a, n, o),
                 s = i.source,
                 r = i.error;
@@ -439,6 +440,8 @@ parcelRequire = (function(e, r, t, n) {
                 ),
                 (c = t.dataset.planId),
                 (m = t.dataset.amount);
+                console.log(c)
+                console.log(m)
             });
           }),
           d.moreAmountsBtn.addEventListener("click", () => {
