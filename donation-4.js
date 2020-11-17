@@ -1,4 +1,4 @@
-parcelRequire = (function(e, r, t, n) {
+arcelRequire = (function(e, r, t, n) {
   var i,
     o = "function" == typeof parcelRequire && parcelRequire,
     u = "function" == typeof require && require;
@@ -59,7 +59,7 @@ parcelRequire = (function(e, r, t, n) {
   return f;
 })(
   {
-    Rjks: [
+    Zb7x: [
       function(require, module, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: !0 }),
@@ -78,17 +78,28 @@ parcelRequire = (function(e, r, t, n) {
       },
       {},
     ],
-    FbHg: [
+    "6YIb": [
+      function(require, module, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: !0 }),
+          (exports.default = void 0);
+        const e = Stripe("pk_live_ZuvxnU7DyNyLQCwFRKdmbw4d00GTMle8qs");
+        var t = e;
+        exports.default = t;
+      },
+      {},
+    ],
+    XxEM: [
       function(require, module, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: !0 }),
           (exports.default = m);
-        var e = t(require("./elementsStyle"));
-        function t(e) {
+        var e = r(require("./elementsStyle")),
+          t = r(require("../initStripe"));
+        function r(e) {
           return e && e.__esModule ? e : { default: e };
         }
-        const r = Stripe("pk_live_ZuvxnU7DyNyLQCwFRKdmbw4d00GTMle8qs"),
-          n = r.elements(),
+        const n = t.default.elements(),
           a = n.create("cardNumber", { style: e.default }),
           c = n.create("cardExpiry", { style: e.default }),
           d = n.create("cardCvc", { style: e.default }),
@@ -123,149 +134,343 @@ parcelRequire = (function(e, r, t, n) {
             d.addEventListener("change", function(e) {
               e.error ? i(e.error.message, "cardCvc") : s("cardCvc");
             }),
-            { stripe: r, idealBank: u, cardElement: a }
+            { stripe: t.default, idealBank: u, cardElement: a }
           );
         }
       },
-      { "./elementsStyle": "Rjks" },
+      { "./elementsStyle": "Zb7x", "../initStripe": "6YIb" },
     ],
-    Focm: [
+    aETi: [
       function(require, module, exports) {
         "use strict";
-        var e = t(require("./elementsSetup"));
-        function t(e) {
+        Object.defineProperty(exports, "__esModule", { value: !0 }),
+          (exports.default = void 0);
+        var e = r(require("./initStripe"));
+        console.log("This is initstripe")
+        console.log(e)
+        function r(e) {
           return e && e.__esModule ? e : { default: e };
         }
-        const n = (0, e.default)(),
-          a = n.stripe,
-          d = n.cardElement,
-          s = n.idealBank;
-        let i = "card";
-        const r = document.getElementById("donation-form"),
-          o = document.getElementById("donation-amount"),
-          c = document.getElementById("full-name-field"),
-          l = document.getElementById("greeting-message"),
-          m = document.getElementById("email-field"),
-          u = document.getElementById("form-errors"),
-          g = document.getElementById("newsletter-checkbox"),
-          v = document.getElementById("submit-btn");
-        r.addEventListener("submit", async (e) => {
-          e.preventDefault(), (v.value = "Een moment geduld...");
-          const t = Math.round(100 * parseInt(o.value)),
-            n = l.value,
-            r = m.value,
-            E = g.checked,
-            p = c.value;
-          if ("card" === i) {
-            const e = { email: r };
-            p && (e.name = p);
-            const s = await a.createPaymentMethod("card", d, {
-                billing_details: e,
-              }),
-              i = s.paymentMethod,
-              o = s.error;
-            if (o) u.textContent = o.message;
-            else {
-              (u.textContent = ""),
-                I(
-                  await axios.post(
-                    "https://bat-mitzvah-eve.nl/confirm_payment",
-                    {
-                      paymentMethodId: i.id,
-                      amount: t,
-                      greeting: n,
-                      email: r,
-                      newsletterSignup: E,
-                      description: PAYMENT_DESCRIPTION,
-                    }
-                  )
-                );
-            }
-          } else {
-            const e = {
-              type: "ideal",
+        async function t(r) {
+          let t = r.fullName,
+            a = r.amount,
+            u = r.metadata,
+            l = r.return_url,
+            n = r.idealBank,
+            i = r.reusable;
+            console.log(r)
+          const o = {
+            type: "ideal",
+            currency: "EUR",
+            metadata: u,
+            redirect: { return_url: l },
+          };
+          console.log(o)
+          return (a && (o.amount = a), t && (o.owner = { name: t }),
+            u.email && (o.owner.email = u.email),
+            i && (o.usage = "reusable"),
+            await e.default.createSource(n, o)
+          );
+        }
+        var a = t;
+        exports.default = a;
+      },
+      { "./initStripe": "6YIb" },
+    ],
+    GhFC: [
+      function(require, module, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: !0 }),
+          (exports.default = void 0);
+        var e = r(require("./createStripeSource"));
+        function r(e) {
+          return e && e.__esModule ? e : { default: e };
+        }
+        async function t(r, t, a, o) {
+          const u = await (0, e.default)({
+              fullName: r,
               amount: t,
-              currency: "EUR",
-              metadata: {
-                greeting: n,
-                email: r,
-                newsletterSignup: E,
-                description: PAYMENT_DESCRIPTION,
-                REDIRECT_URL: REDIRECT_URL,
-              },
-              redirect: {
-                return_url:
-                  "https://www.saveachildsheart.org/nl/payment-process-dutch",
-              },
-            };
-            p && (e.owner = { name: p });
-            const d = await a.createSource(s, e),
-              i = d.source,
-              o = d.error;
-            if (o) {
-              document.getElementById("error-message").textContent = o.message;
-            } else document.location.href = i.redirect.url;
+              metadata: a,
+              idealBank: o,
+              return_url:
+                "https://www.saveachildsheartnederland.nl/kom-in-actie/doneer/payment-process-dutch",
+            }),
+            s = u.source,
+            l = u.error;
+          return console.log(l), l ? { error: l } : { source: s };
+        }
+        var a = t;
+        exports.default = a;
+      },
+      { "./createStripeSource": "aETi" },
+    ],
+    Xa8A: [
+      function(require, module, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: !0 }),
+          (exports.default = void 0);
+        const e = {};
+        function t() {
+          return (
+            (e.form = document.getElementById("donation-form")),
+            (e.amountContainer = document.getElementById("amount-container")),
+            (e.amountField = document.getElementById("donation-amount")),
+            (e.fullNameField = document.getElementById("full-name-field")),
+            (e.emailField = document.getElementById("email-field")),
+            (e.formErrors = document.getElementById("form-errors")),
+            (e.newsletterCheckbox = document.getElementById(
+              "newsletter-checkbox"
+            )),
+            (e.submitBtn = document.getElementById("submit-btn")),
+            (e.oneTimeSwitch = document.getElementById("one-time-switch")),
+            (e.monthlySwitch = document.getElementById("monthly-switch")),
+            (e.donationPlansWrapper = document.getElementById(
+              "donation-plans"
+            )),
+            (e.donationPlansButtons = document.querySelectorAll(
+              ".donation-plan-btn"
+            )),
+            (e.moreAmountsBtn = document.getElementById("more-amounts-btn")),
+            (e.mandatePolicy = document.getElementById("mandate-policy")),
+            (e.cardSwitch = document.getElementById("card-switch")),
+            (e.iDealSwitch = document.getElementById("iDeal-switch")),
+            (e.cardSection = document.getElementById("payment-section-card")),
+            (e.iDealSection = document.getElementById("payment-section-ideal")),
+            (e.hiddenPlansButtons = document.getElementById(
+              "hidden-plans-buttons"
+            )),
+            e
+          );
+        }
+        var n = t;
+        exports.default = n;
+      },
+      {},
+    ],
+    Xmoj: [
+      function(require, module, exports) {
+        "use strict";
+        var e = n(require("./stripe/elements/elementsSetup")),
+          t = n(require("./stripe/createIdealSource")),
+          a = n(require("./helpers/initDOMElements"));
+        function n(e) {
+          return e && e.__esModule ? e : { default: e };
+        }
+        const i = (0, e.default)(),
+          s = i.stripe,
+          r = i.cardElement,
+          o = i.idealBank,
+          d = (0, a.default)();
+        let l = "one-time",
+          c = "plan_FWMOgrTK5g3i5Q",
+          m = 100,
+          u = "card";
+        async function h(e) {
+          try {
+            if ("card" === u) {
+              const t = await axios.get(
+                  "https://bat-mitzvah-eve.nl/setup_intent"
+                ),
+                a = await s.handleCardSetup(t.data.client_secret, r, {
+                  payment_method_data: {
+                    billing_details: { name: e.fullName, email: e.email },
+                  },
+                });
+              if (a.setupIntent) {
+                const t = await axios.post(
+                  "https://bat-mitzvah-eve.nl/create_recurring",
+                  {
+                    paymentType: "card",
+                    paymentMethodId: a.setupIntent.payment_method,
+                    subscriptionPlanId: c,
+                    email: e.email,
+                    name: e.fullName,
+                    metadata: { newsletterSignup: e.newsletterSignup },
+                  }
+                );
+                if ("incomplete" === t.data.status) {
+                  const e = await s.handleCardPayment(
+                    t.data.latest_invoice.payment_intent.client_secret
+                  );
+                  e.error ? (d.formErrors.textContent = e.error.message) : v();
+                } else "active" === t.data.status && v();
+              } else
+                a.error &&
+                  ((d.formErrors.textContent = a.error.message),
+                  console.error(a.error));
+            } else {
+              const a = m,
+                n = {
+                  email: e.email,
+                  newsletterSignup: e.newsletterSignup,
+                  description: PAYMENT_DESCRIPTION,
+                  subscriptionPlanId: c,
+                  recurring: !0,
+                  REDIRECT_URL: REDIRECT_URL,
+                },
+                i = await (0, t.default)(e.fullName, a, n, o),
+                s = i.source,
+                r = i.error;
+              s
+                ? (document.location.href = s.redirect.url)
+                : r && (d.formErrors.textContent = r.message);
+            }
+          } catch (a) {
+            d.formErrors.textContent = a.message;
           }
-        });
-        const E = document.getElementById("card-switch"),
-          p = document.getElementById("iDeal-switch"),
-          y = document.getElementById("payment-section-card"),
-          h = document.getElementById("payment-section-ideal");
-        function I(e) {
+          console.log(n)
+        }
+        function p(e) {
           const t = e.data,
-            n = t.error,
-            d = t.requires_action,
-            s = t.payment_intent_client_secret;
-          n
-            ? ((u.textContent = n.message),
-              v.classList.add("button-failed", "button-disabled"),
-              (v.disabled = !0),
-              (v.value = "An error occured."))
-            : d
-            ? a.handleCardAction(s).then((e) => {
+            a = t.error,
+            n = t.requires_action,
+            i = t.payment_intent_client_secret;
+          a
+            ? ((d.formErrors.textContent = a.message),
+              d.submitBtn.classList.add("button-failed", "button-disabled"),
+              (d.submitBtn.disabled = !0),
+              (d.submitBtn.value = "An error occured."))
+            : n
+            ? s.handleCardAction(i).then((e) => {
                 e.error
-                  ? ((u.textContent = e.error.message),
-                    v.classList.add("button-failed", "button-disabled"),
-                    (v.disabled = !0),
-                    (v.value = "An error occured."),
+                  ? ((d.formErrors.textContent = e.error.message),
+                    d.submitBtn.classList.add(
+                      "button-failed",
+                      "button-disabled"
+                    ),
+                    (d.submitBtn.disabled = !0),
+                    (d.submitBtn.value = "An error occured."),
                     console.warn(e.error))
                   : axios
                       .post("https://bat-mitzvah-eve.nl/confirm_payment", {
                         paymentIntentId: e.paymentIntent.id,
                       })
-                      .then(I)
+                      .then(p)
                       .catch((e) => {
-                        v.classList.add("button-failed", "button-disabled"),
-                          (v.disabled = !0),
-                          (v.value = "Your card was declined.");
+                        d.submitBtn.classList.add(
+                          "button-failed",
+                          "button-disabled"
+                        ),
+                          (d.submitBtn.disabled = !0),
+                          (d.submitBtn.value = "Your card was declined.");
                       });
               })
-            : (v.classList.add("button-success", "button-disabled"),
-              (v.disabled = !0),
-              (v.value = "Donatie verwerkt!"),
-              setTimeout(() => window.location.replace(REDIRECT_URL), 1500));
+            : v();
         }
-        E.addEventListener("click", (e) => {
-          e.preventDefault(),
-            E.classList.remove("inactive"),
-            p.classList.add("inactive"),
-            y.classList.remove("hidden"),
-            h.classList.add("hidden"),
-            (i = "card");
+        function v() {
+          d.submitBtn.classList.add("button-success", "button-disabled"),
+            (d.submitBtn.disabled = !0),
+            (d.submitBtn.value = "Donatie verwerkt!"),
+            setTimeout(() => window.location.replace(REDIRECT_URL), 1500);
+        }
+        d.form.addEventListener("submit", async (e) => {
+          e.preventDefault(), (d.submitBtn.value = "Een moment geduld...");
+          const a = d.fullNameField.value,
+            n = d.emailField.value,
+            i = d.newsletterCheckbox.checked,
+            c = { email: n, fullName: a, newsletterSignup: i };
+          if ("daily" === l) h(c);
+          else {
+            const e = Math.round(100 * parseInt(d.amountField.value));
+            console.log(e)
+            if ("card" === u) {
+              const t = await s.createPaymentMethod("card", r, {
+                  billing_details: { name: c.fullName, email: c.email },
+                }),
+                a = t.paymentMethod,
+                o = t.error;
+              if (o) d.formErrors.textContent = o.message;
+              else {
+                (d.formErrors.textContent = ""),
+                  p(
+                    await axios.post(
+                      "https://bat-mitzvah-eve.nl/confirm_payment",
+                      {
+                        paymentMethodId: a.id,
+                        amount: e,
+                        email: n,
+                        newsletterSignup: i,
+                        description: PAYMENT_DESCRIPTION,
+                      }
+                    )
+                  );
+              }
+            } else {
+              const s = {
+                  email: n,
+                  newsletterSignup: i,
+                  description: PAYMENT_DESCRIPTION,
+                  REDIRECT_URL: REDIRECT_URL,
+                },
+                r = await (0, t.default)(a, e, s, o),
+                l = r.source,
+                c = r.error;
+              l
+                ? (document.location.href = l.redirect.url)
+                : c && (d.formErrors.textContent = c.message);
+            }
+          }
         }),
-          p.addEventListener("click", (e) => {
+          d.oneTimeSwitch.addEventListener("click", () => {
+            d.oneTimeSwitch.classList.remove("not-active"),
+              d.monthlySwitch.classList.add("not-active"),
+              d.amountContainer.classList.remove("hidden"),
+              d.amountField.setAttribute("required", !0),
+              d.donationPlansWrapper.classList.add("hidden"),
+              d.mandatePolicy.classList.add("hidden"),
+              (l = "one-time");
+          }),
+          d.monthlySwitch.addEventListener("click", () => {
+            d.monthlySwitch.classList.remove("not-active"),
+              d.oneTimeSwitch.classList.add("not-active"),
+              d.amountContainer.classList.add("hidden"),
+              d.amountField.removeAttribute("required"),
+              d.donationPlansWrapper.classList.remove("hidden"),
+              d.mandatePolicy.classList.remove("hidden"),
+              (l = "daily");
+          }),
+          d.donationPlansButtons.forEach((e) => {
+            e.addEventListener("click", (e) => {
+              const t = e.target;
+              t.classList.remove("not-active"),
+                d.donationPlansButtons.forEach(
+                  (e) => e !== t && e.classList.add("not-active")
+                ),
+                (c = t.dataset.planId),
+                (m = t.dataset.amount);
+                console.log(c)
+                console.log(m)
+            });
+          }),
+          d.moreAmountsBtn.addEventListener("click", () => {
+            d.hiddenPlansButtons.classList.remove("hidden"),
+              d.moreAmountsBtn.classList.add("hidden");
+          }),
+          d.cardSwitch.addEventListener("click", (e) => {
             e.preventDefault(),
-              p.classList.remove("inactive"),
-              E.classList.add("inactive"),
-              h.classList.remove("hidden"),
-              y.classList.add("hidden"),
-              (i = "ideal");
+              d.cardSwitch.classList.remove("inactive"),
+              d.iDealSwitch.classList.add("inactive"),
+              d.cardSection.classList.remove("hidden"),
+              d.iDealSection.classList.add("hidden"),
+              (u = "card");
+          }),
+          d.iDealSwitch.addEventListener("click", (e) => {
+            e.preventDefault(),
+              d.iDealSwitch.classList.remove("inactive"),
+              d.cardSwitch.classList.add("inactive"),
+              d.iDealSection.classList.remove("hidden"),
+              d.cardSection.classList.add("hidden"),
+              (u = "ideal");
           });
       },
-      { "./elementsSetup": "FbHg" },
+      {
+        "./stripe/elements/elementsSetup": "XxEM",
+        "./stripe/createIdealSource": "GhFC",
+        "./helpers/initDOMElements": "Xa8A",
+      },
     ],
   },
   {},
-  ["Focm"],
+  ["Xmoj"],
   null
 );
