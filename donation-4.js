@@ -1,4 +1,4 @@
-arcelRequire = (function(e, r, t, n) {
+parcelRequire = (function(e, r, t, n) {
   var i,
     o = "function" == typeof parcelRequire && parcelRequire,
     u = "function" == typeof require && require;
@@ -262,8 +262,8 @@ arcelRequire = (function(e, r, t, n) {
           o = i.idealBank,
           d = (0, a.default)();
         let l = "one-time",
-          c = "plan_FWMOgrTK5g3i5Q",
-          m = 100,
+          c = "plan_FUIxzfuPl4eLAs",
+          m = 1000,
           u = "card";
         async function h(e) {
           try {
@@ -369,7 +369,7 @@ arcelRequire = (function(e, r, t, n) {
             n = d.emailField.value,
             i = d.newsletterCheckbox.checked,
             c = { email: n, fullName: a, newsletterSignup: i };
-          if ("daily" === l) h(c);
+          if ("monthly" === l) h(c);
           else {
             const e = Math.round(100 * parseInt(d.amountField.value));
             console.log(e)
@@ -427,7 +427,7 @@ arcelRequire = (function(e, r, t, n) {
               d.amountField.removeAttribute("required"),
               d.donationPlansWrapper.classList.remove("hidden"),
               d.mandatePolicy.classList.remove("hidden"),
-              (l = "daily");
+              (l = "monthly");
           }),
           d.donationPlansButtons.forEach((e) => {
             e.addEventListener("click", (e) => {
