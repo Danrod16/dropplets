@@ -415,6 +415,8 @@ parcelRequire = (function(e, r, t, n) {
             d.oneTimeSwitch.classList.remove("not-active"),
               d.monthlySwitch.classList.add("not-active"),
               d.amountContainer.classList.remove("hidden"),
+              d.iDealSwitch.classList.remove("hidden"),
+              d.cardSwitch.classList.remove("hidden"),
               d.amountField.setAttribute("required", !0),
               d.donationPlansWrapper.classList.add("hidden"),
               d.mandatePolicy.classList.add("hidden"),
