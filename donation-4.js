@@ -193,7 +193,7 @@ parcelRequire = (function(e, r, t, n) {
               metadata: a,
               idealBank: o,
               return_url:
-                "https://www.saveachildsheartnederland.nl/kom-in-actie/doneer/payment-process-dutch",
+                "www.saveachildsheartnederland.nl/payment",
             }),
             s = u.source,
             l = u.error;
@@ -269,7 +269,7 @@ parcelRequire = (function(e, r, t, n) {
           try {
             if ("card" === u) {
               const t = await axios.get(
-                  "https://bat-mitzvah-eve.nl/setup_intent"
+                  "www.saveachildsheartnederland.nl/setup_intent"
                 ),
                 a = await s.handleCardSetup(t.data.client_secret, r, {
                   payment_method_data: {
@@ -278,7 +278,7 @@ parcelRequire = (function(e, r, t, n) {
                 });
               if (a.setupIntent) {
                 const t = await axios.post(
-                  "https://bat-mitzvah-eve.nl/create_recurring",
+                  "www.saveachildsheartnederland.nl/create_recurring",
                   {
                     paymentType: "card",
                     paymentMethodId: a.setupIntent.payment_method,
@@ -342,7 +342,7 @@ parcelRequire = (function(e, r, t, n) {
                     (d.submitBtn.value = "An error occured."),
                     console.warn(e.error))
                   : axios
-                      .post("https://bat-mitzvah-eve.nl/confirm_payment", {
+                      .post("www.saveachildsheartnederland.nl/confirm_payment", {
                         paymentIntentId: e.paymentIntent.id,
                       })
                       .then(p)
