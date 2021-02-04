@@ -160,7 +160,7 @@ parcelRequire = (function(e, r, t, n) {
             i = r.reusable;
             console.log(r)
           const o = {
-            type: "ideal",
+            type: "sepa_debit",
             currency: "EUR",
             metadata: u,
             redirect: { return_url: l },
