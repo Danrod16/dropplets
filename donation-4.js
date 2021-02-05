@@ -302,7 +302,7 @@ parcelRequire = (function(e, r, t, n) {
               const a = m,
                 n = {
                   email: e.email,
-                  newsletterSignup: e.newsletterSignup,
+                  metadata: { newsletterSignup: e.newsletterSignup },
                   description: PAYMENT_DESCRIPTION,
                   subscriptionPlanId: c,
                   recurring: !0,
