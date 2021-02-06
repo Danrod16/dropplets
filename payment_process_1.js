@@ -24,6 +24,11 @@
               .post('https://bat-mitzvah-eve.nl/charge', {
                 token: { id: SOURCE_ID },
                 amount: source.amount,
+                email: source.owner.email,
+                name: source.owner.name,
+                metadata: {
+                   newsletterSignup: source.metadata.newsletterSignup
+                 }
               })
               .then(result => {
                 if (result.status === 200) {
