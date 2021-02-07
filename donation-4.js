@@ -190,7 +190,7 @@ parcelRequire = (function(e, r, t, n) {
           const u = await (0, e.default)({
               fullName: r,
               amount: t,
-              metadata: a,
+              metadata: e.newsletterCheckbox.checked,
               idealBank: o,
               return_url:
                 "https://www.saveachildsheartnederland.nl/payment",
@@ -405,8 +405,7 @@ parcelRequire = (function(e, r, t, n) {
                 r = await (0, t.default)(a, e, s, o),
                 l = r.source,
                 c = r.error;
-              l
-                ? (document.location.href = l.redirect.url)
+              l ? (document.location.href = l.redirect.url)
                 : c && (d.formErrors.textContent = c.message);
             }
           }
