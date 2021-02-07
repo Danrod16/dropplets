@@ -186,11 +186,11 @@ parcelRequire = (function(e, r, t, n) {
         function r(e) {
           return e && e.__esModule ? e : { default: e };
         }
-        async function t(r, t, a, o, e) {
+        async function t(r, t, a, o) {
           const u = await (0, e.default)({
               fullName: r,
               amount: t,
-              metadata: e.newsletterCheckbox.checked,
+              metadata: { newsletterSignup: document.getElementById("newsletter-checkbox") },
               idealBank: o,
               return_url:
                 "https://www.saveachildsheartnederland.nl/payment",
