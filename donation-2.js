@@ -200,7 +200,7 @@ parcelRequire = (function(e, r, t, n) {
               i = d.source,
               o = d.error;
             if (o) {
-              document.getElementById("error-message").textContent = o.message;
+              document.getElementById("card-errors").textContent = o.message;
             } else document.location.href = i.redirect.url;
           }
         });
