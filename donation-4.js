@@ -167,7 +167,7 @@ parcelRequire = (function(e, r, t, n) {
           };
           console.log(o)
           return (a && (o.amount = a), t && (o.owner = { name: t }),
-            u.email && (o.owner.email = u.email),
+            u.email && (o.owner.email = u.email), u.newsletterSignup && (o.metadata.newsletterSignup = u.newsletterSignup),
             i && (o.usage = "reusable"),
             await e.default.createSource(n, o)
           );
