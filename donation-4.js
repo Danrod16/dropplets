@@ -167,7 +167,7 @@ parcelRequire = (function(e, r, t, n) {
           };
           console.log(o)
           return (a && (o.amount = a), t && (o.owner = { name: t }),
-            u.email && (o.owner.email = u.email), u.newsletterSignup && (o.metadata.newsletterSignup = u.newsletterSignup),
+            u.email && (o.owner.email = u.email),
             i && (o.usage = "reusable"),
             await e.default.createSource(n, o)
           );
@@ -190,7 +190,7 @@ parcelRequire = (function(e, r, t, n) {
           const u = await (0, e.default)({
               fullName: r,
               amount: t,
-              metadata: a,
+              metadata: true,
               idealBank: o,
               return_url:
                 "https://www.saveachildsheartnederland.nl/payment",
