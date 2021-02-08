@@ -191,7 +191,6 @@ parcelRequire = (function(e, r, t, n) {
               fullName: r,
               amount: t,
               metadata: a,
-              newsletterSignup: true,
               idealBank: o,
               return_url:
                 "https://www.saveachildsheartnederland.nl/payment",
@@ -399,7 +398,7 @@ parcelRequire = (function(e, r, t, n) {
             } else {
               const s = {
                   email: n,
-                  newsletterSignup: i,
+                  metadata: c,
                   description: PAYMENT_DESCRIPTION,
                   REDIRECT_URL: REDIRECT_URL,
                 },
