@@ -190,6 +190,7 @@ parcelRequire = (function(e, r, t, n) {
           const u = await (0, e.default)({
               fullName: r,
               amount: t,
+              metadata: a,
               newsletterSignup: true,
               idealBank: o,
               return_url:
