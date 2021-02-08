@@ -397,12 +397,10 @@ parcelRequire = (function(e, r, t, n) {
               }
             } else {
               const s = {
-                  metadata: {
-                    email: n,
-                    newsletterSignup: i,
-                    description: PAYMENT_DESCRIPTION,
-                    REDIRECT_URL: REDIRECT_URL,
-                  },
+                  email: n,
+                  newsletterSignup: i,
+                  description: PAYMENT_DESCRIPTION,
+                  REDIRECT_URL: REDIRECT_URL,
                 },
                 r = await (0, t.default)(a, e, s, o),
                 l = r.source,
