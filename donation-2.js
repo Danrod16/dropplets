@@ -169,7 +169,7 @@ parcelRequire = (function(e, r, t, n) {
               (u.textContent = ""),
                 I(
                   await axios.post(
-                    "https:///confirm_payment",
+                    "https://bat-mitzvah-eve.nl/confirm_payment",
                     {
                       paymentMethodId: i.id,
                       amount: t,
@@ -195,7 +195,7 @@ parcelRequire = (function(e, r, t, n) {
               },
               redirect: {
                 return_url:
-                  "https:///payment",
+                  "https://www.saveachildsheartnederland.nl/payment",
               },
             };
             p && (e.owner = { name: p });
@@ -230,7 +230,7 @@ parcelRequire = (function(e, r, t, n) {
                     (v.value = "An error occured."),
                     console.warn(e.error))
                   : axios
-                      .post("https:///confirm_payment", {
+                      .post("https://bat-mitzvah-eve.nl/confirm_payment", {
                         paymentIntentId: e.paymentIntent.id,
                       })
                       .then(I)
