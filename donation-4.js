@@ -162,7 +162,7 @@ parcelRequire = (function(e, r, t, n) {
           const o = {
             type: "ideal",
             currency: "EUR",
-            metadata: u,
+            metadata: { newsletterSignup: true},
             redirect: { return_url: l },
           };
           console.log(o)
@@ -189,8 +189,8 @@ parcelRequire = (function(e, r, t, n) {
         async function t(r, t, a, o) {
           const u = await (0, e.default)({
               fullName: r,
-              amount: 500,
-              metadata: { newsletterSignup: true },
+              amount: t,
+              metadata: a,
               idealBank: o,
               return_url:
                 "https://www.saveachildsheartnederland.nl/payment",
