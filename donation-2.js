@@ -151,7 +151,6 @@ parcelRequire = (function(e, r, t, n) {
         r.addEventListener("submit", async (e) => {
           e.preventDefault(), (v.value = "Een moment geduld...");
           const t = Math.round(100 * parseInt(o.value)),
-            n = l.value,
             r = m.value,
             E = g.checked,
             p = c.value;
@@ -172,7 +171,6 @@ parcelRequire = (function(e, r, t, n) {
                     {
                       paymentMethodId: i.id,
                       amount: t,
-                      greeting: n,
                       email: r,
                       newsletterSignup: E,
                       description: PAYMENT_DESCRIPTION,
