@@ -144,7 +144,6 @@ parcelRequire = (function(e, r, t, n) {
         const r = document.getElementById("donation-form"),
           o = document.getElementById("donation-amount"),
           c = document.getElementById("full-name-field"),
-          l = document.getElementById("greeting-message"),
           m = document.getElementById("email-field"),
           u = document.getElementById("form-errors"),
           g = document.getElementById("newsletter-checkbox"),
