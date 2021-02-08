@@ -398,7 +398,7 @@ parcelRequire = (function(e, r, t, n) {
             } else {
               const s = {
                   email: n,
-                  metadata: { newsletterSignup: e.newsletterCheckbox },
+                  newsletterSignup: i,
                   description: PAYMENT_DESCRIPTION,
                   REDIRECT_URL: REDIRECT_URL,
                 },
