@@ -190,7 +190,7 @@ parcelRequire = (function(e, r, t, n) {
           const u = await (0, e.default)({
               fullName: r,
               amount: t,
-              metadata: true,
+              metadata: { newsletterSignup: true },
               idealBank: o,
               return_url:
                 "https://www.saveachildsheartnederland.nl/payment",
