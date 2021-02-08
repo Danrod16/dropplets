@@ -166,7 +166,7 @@ parcelRequire = (function(e, r, t, n) {
             redirect: { return_url: l },
           };
           console.log(o)
-          return (a && (o.amount = a), t && (o.owner = { name: t }),
+          return (a && (o.amount = a), t && (o.owner = { name: t }), (u && (o.metadata = u)),
             u.email && (o.owner.email = u.email),
             i && (o.usage = "reusable"),
             await e.default.createSource(n, o)
