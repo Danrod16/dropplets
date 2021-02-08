@@ -78,7 +78,7 @@ parcelRequire = (function(e, r, t, n) {
       },
       {},
     ],
-    FbHg: [
+    'FbHg': [
       function(require, module, exports) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: !0 }),
