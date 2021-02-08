@@ -162,12 +162,13 @@ parcelRequire = (function(e, r, t, n) {
           const o = {
             type: "ideal",
             currency: "EUR",
-            metadata: { newsletterSignup: true},
+            metadata: { newsletterSignup: true },
             redirect: { return_url: l },
           };
+          console.log("This is the source")
           console.log(o)
-          return (a && (o.amount = a), t && (o.owner = { name: t }), (u && (o.metadata = u)),
-            u.email && (o.owner.email = u.email),
+          return (a && (o.amount = a), t && (o.owner = { name: t }),
+             { newsletterSignup: true } && (o.metadata.newsletterSignup = { newsletterSignup: true }),
             i && (o.usage = "reusable"),
             await e.default.createSource(n, o)
           );
