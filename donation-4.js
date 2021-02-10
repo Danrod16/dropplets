@@ -162,13 +162,12 @@ parcelRequire = (function(e, r, t, n) {
           const o = {
             type: "ideal",
             currency: "EUR",
-            metadata: { newsletterSignup: true },
+            metadata: u,
             redirect: { return_url: l },
           };
-          console.log("This is the source")
           console.log(o)
           return (a && (o.amount = a), t && (o.owner = { name: t }),
-             { newsletterSignup: true } && (o.metadata.newsletterSignup = { newsletterSignup: true }),
+            u.email && (o.owner.email = u.email),
             i && (o.usage = "reusable"),
             await e.default.createSource(n, o)
           );
@@ -428,6 +427,8 @@ parcelRequire = (function(e, r, t, n) {
               d.amountContainer.classList.add("hidden"),
               d.iDealSwitch.classList.add("hidden"),
               d.cardSwitch.classList.add("hidden"),
+              d.iDealSection.classList.add("hidden"),
+              d.cardSection.classList.remove("hidden"),
               d.amountField.removeAttribute("required"),
               d.donationPlansWrapper.classList.remove("hidden"),
               d.mandatePolicy.classList.remove("hidden"),
