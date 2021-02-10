@@ -364,7 +364,7 @@ parcelRequire = (function(e, r, t, n) {
             setTimeout(() => window.location.replace(REDIRECT_URL), 1500);
         }
         d.form.addEventListener("submit", async (e) => {
-          e.preventDefault(), (d.submitBtn.value = "Een moment geduld...");
+          e.preventDefault(), (d.submitBtn.value = "Momentje...");
           const a = d.fullNameField.value,
             n = d.emailField.value,
             i = d.newsletterCheckbox.checked,

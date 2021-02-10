@@ -1,0 +1,91 @@
+<div>
+        <a href="#" class="button blue-2 switch" id="one-time-switch">Eenmalig</a><a href="#" class="button blue-2 switch not-active" id="monthly-switch">Maandelijks</a>
+        </div>
+        <div id="donation-plans" class="hidden">
+          <div class="dnl-label">Maandelijks giftbedrag <span class="dnl-required">*</span></div>
+          <div class="donation-plans-buttons initial-plans">
+              <a href="#" class="button blue-2 dnl donation-plan-btn" data-plan-id="plan_FUIxzfuPl4eLAs">€ 10</a><a href="#" class="button blue-2 dnl not-active donation-plan-btn" data-plan-id="plan_FUIwQMIa5BAW2k">€ 20</a><a href="#" class="button blue-2 dnl not-active donation-plan-btn" data-plan-id="plan_FUIyCUvAFYWl0h">€ 30</a><a href="#" class="button blue-2 dnl not-active donation-plan-btn" data-plan-id="plan_FUIz0l6qUp9Swv">€ 50</a>
+              </div>
+              <div class="donation-plans-buttons" id="hidden-plans-buttons">
+                <a href="#" class="button blue-2 dnl not-active donation-plan-btn" data-plan-id="plan_FUIzvy22tT37Z7" data-amount="4000">€ 40</a>
+                <a href="#" class="button blue-2 dnl not-active donation-plan-btn" data-plan-id="plan_FUJ00S9wAt5qoR" data-amount="6000">€ 60</a>
+                <a href="#" class="button blue-2 dnl not-active donation-plan-btn" data-plan-id="plan_FUJ0BQfWXa4krN" data-amount="8000">€ 80</a>
+                <a href="#" class="button blue-2 dnl not-active donation-plan-btn" data-plan-id="plan_FUJ1veJn3VcSCH" data-amount="19000">€ 90</a>
+                <a href="#" class="button blue-2 dnl not-active donation-plan-btn" data-plan-id="plan_FUJ1uiKcEqJ94g" data-amount="10000">€ 100</a>
+                <a href="#" class="button blue-2 dnl not-active donation-plan-btn" data-plan-id="plan_FUJ1iBAZUeE8M9" data-amount="15000">€ 150</a>
+                <a href="#" class="button blue-2 dnl not-active donation-plan-btn" data-plan-id="plan_FUMQShGahtiMSY" data-amount="20000">€ 200</a>
+                <a href="#" class="button blue-2 dnl not-active donation-plan-btn" data-plan-id="plan_FUJ6VAs0IbtmQ2" data-amount="30000">€ 300</a></div>
+
+
+          <div>
+              <a href="#" class="button blue-2 drop-down" id="more-amounts-btn">Ander bedrag ▼</a>
+          </div>
+        </div>
+        <div class="dnl-payment">
+          <a id="card-switch" href="#" class="dnl-pay-active w-inline-block"><div>Doneer via creditcard</div></a><a id="iDeal-switch" href="#" class="dnl-pay-active inactive w-inline-block"><div>Doneer via iDeal</div></a>
+        </div>
+        <div class="dnl-form-fields w-form" style="display: block;">
+          <form id="donation-form" name="wf-form-DNL" data-name="DNL" action="javascript:void(0);">
+            <div id="amount-container">
+            <label for="donation-amount" class="dnl-label">Amount to donate in euro <span class="dnl-required">*</span></label>
+              <div class="dnl-multi-field-row">
+                <div class="dnl-text euro">€</div>
+                <input type="number" class="dnl-text _90 w-input" autofocus="true" maxlength="256" name="Amount" data-name="Amount" id="donation-amount" required="">
+              </div></div>
+            <div class="w-embed">
+              <div id="payment-section">
+                <div id="payment-section-card">
+                  <label for="card-element" class="dnl-label">Kaartgegevens <span class="dnl-required">*</span></label>
+                  <div id="card-element" class="stripe-elements"></div>
+                  <div class="dnl-multi-field-row second-payment-row">
+                    <div id="expire-element" class="stripe-elements"></div>
+                    <div id="cvc-element" class="stripe-elements"></div>
+                  </div>
+                </div>
+
+                <div id="payment-section-ideal" class="hidden">
+                  <div id="payment-section-card">
+                    <label for="Card-number-2" class="dnl-label">Bankgegevens <span class="dnl-required">*</span></label>
+                    <div id="ideal-bank-element" class="stripe-elements"></div>
+                  </div>
+                </div>
+
+                <div id="card-errors" class="error-message" role="alert"></div>
+              </div>
+            </div>
+            <label for="Full-name" class="dnl-label">Volledige naam <span class="dnl-required">*</span> </label><input type="text" maxlength="256" name="Full-name" data-name="Full name" id="full-name-field" class="dnl-text w-input" required=""><label for="Full-name-2" class="dnl-label">E-mailadres <span class="text-span-2">*</span></label><input type="email" class="dnl-text w-input" maxlength="256" name="Email" data-name="Email" placeholder="naam@domein.nl" id="email-field" required="">
+            <div class="w-embed">
+              <label for="Full-name-2" class="dnl-label">Ontvang updates van Save a Child’s Heart </label>
+              <div class="checkbox-field w-checkbox">
+                <input type="checkbox" id="newsletter-checkbox" name="GDPR" data-name="GDPR" class="checkbox w-checkbox-input sach-styled-checkbox">
+                <label for="newsletter-checkbox" class="w-form-label sach-styled-checkbox-label">Ik geef Save a Child's Heart Nederland toestemming om mij een aantal keer per jaar per e-mail te
+                  benaderen.</label>
+              </div>
+            </div>
+            <input type="submit" value="Doneer nu" data-wait="Een momentje" id="submit-btn" class="submit-button-2 w-button">
+            <div id="form-errors" role="alert"></div>
+
+            <div id="mandate-policy" class="hidden">
+              <p>
+                Met het verstrekken van je IBAN geef je toestemming aan ons betaalbedrijf, Rocketship Inc en Stripe, om
+                incasso-opdrachten te sturen naar je bank om maandelijks een bedrag van je rekening af te schrijven
+                conform deze opdrachten. Als je het niet eens bent met deze afschrijvingen, kun je deze laten
+                terugboeken. Neem hiervoor binnen 8 weken na de eerste afschrijving contact op met je bank. Vraag je
+                bank naar de voorwaarden. Wij brengen 7,50 euro in rekening voor mislukte of teruggeboekte incasso
+                opdrachten.
+              </p>
+
+              <p></p>
+              <p>
+                Stichting Save a Child’s Heart Nederland verwerkt je gegevens conform de Algemene Verordening
+                Gegevensbescherming (de AVG). Lees onze privacy statement (LINK:
+                https://www.saveachildsheart.nl/privacy-protocol.html)
+              </p>
+              <p>
+                Wij leggen je adresgegevens vast om je te kunnen bedanken en omdat we jou dan kunnen meetellen als onze
+                vriend. Opzegging is tot 5 dagen voor de maandelijkse incassodatum mogelijk door per e-mail contact op
+                te nemen met finance@saveachildsheart.nl. (edited)
+              </p>
+            </div>
+          </form>
+          </div>
