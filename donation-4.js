@@ -193,7 +193,7 @@ parcelRequire = (function(e, r, t, n) {
               metadata: a,
               idealBank: o,
               return_url:
-                "https://www.saveachildsheart.nl/payment",
+                "https://www.saveachildsheartnederland.nl/payment",
             }),
             s = u.source,
             l = u.error;
