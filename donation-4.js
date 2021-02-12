@@ -360,7 +360,7 @@ parcelRequire = (function(e, r, t, n) {
         function v() {
           d.submitBtn.classList.add("button-success", "button-disabled"),
             (d.submitBtn.disabled = !0),
-            (d.submitBtn.value = "Donatie verwerkt!"),
+            (d.submitBtn.value = "Gelukt!"),
             setTimeout(() => window.location.replace(REDIRECT_URL), 1500);
         }
         d.form.addEventListener("submit", async (e) => {
