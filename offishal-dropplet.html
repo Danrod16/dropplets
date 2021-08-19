@@ -1,0 +1,587 @@
+<template>
+  <div class="scary-numbers-page">
+    <page-hero>
+      <h1>{{ $t('calculator.title') }}<span class="accent">.</span></h1>
+    </page-hero>
+    <base-container>
+      <div class="scary-numbers-page__row">
+        <div class="scary-numbers-page__col-lg">
+          <h2 class="scary-numbers-page__subtitle">
+            💰 {{ $t('calculator.subtitle') }}
+          </h2>
+
+          <p class="scary-numbers-page__description">
+            <BaseMarkdown :content="$t('calculator.description')" />
+          </p>
+
+          <div>
+            <h3 class="scary-numbers-page__label">
+              ⏱️ {{ $t('calculator.form.timeLabel') }}
+            </h3>
+
+            <div>
+              <div class="scary-numbers-page__times">
+                <div
+                  :class="[
+                    'scary-numbers-page__time',
+                    { 'scary-numbers-page__time--selected': time === 15 }
+                  ]"
+                  @click="setTime(15)"
+                >
+                  <svg
+                    class="MuiSvgIcon-root MuiSvgIcon-colorDisabled"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    style="width: 80px; height: 80px"
+                  >
+                    <path
+                      d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"
+                    ></path>
+                  </svg>
+                  <p>{{ $t('calculator.form.timeLow') }}</p>
+                </div>
+                <div
+                  :class="[
+                    'scary-numbers-page__time',
+                    { 'scary-numbers-page__time--selected': time === 30 }
+                  ]"
+                  @click="setTime(30)"
+                >
+                  <svg
+                    class="MuiSvgIcon-root MuiSvgIcon-colorDisabled"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    style="width: 80px; height: 80px"
+                  >
+                    <path
+                      d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"
+                    ></path>
+                  </svg>
+                  <p>{{ $t('calculator.form.timeMedium') }}</p>
+                </div>
+                <div
+                  :class="[
+                    'scary-numbers-page__time',
+                    { 'scary-numbers-page__time--selected': time === 60 }
+                  ]"
+                  @click="setTime(60)"
+                >
+                  <svg
+                    class="MuiSvgIcon-root MuiSvgIcon-colorDisabled"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    style="width: 80px; height: 80px"
+                  >
+                    <path
+                      d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"
+                    ></path>
+                  </svg>
+                  <p>{{ $t('calculator.form.timeHigh') }}</p>
+                </div>
+              </div>
+            </div>
+
+            <transition name="fade">
+              <base-card v-show="time < 30" class="scary-numbers-page__tips">
+                <div class="scary-numbers-page__tip">
+                  <h3 class="scary-numbers-page__tip-title">
+                    🤯 {{ $t('calculator.subsubtitle') }}
+                  </h3>
+                  <p>{{ $t('calculator.subdescription') }}</p>
+                </div>
+              </base-card>
+            </transition>
+
+            <div
+              class="scary-numbers-page__total scary-numbers-page__total--partial"
+            >
+              <h3 class="scary-numbers-page__results-title">
+                {{ $t('calculator.annualCost') }}
+              </h3>
+              <p class="scary-numbers-page__results-number--sm">
+                {{ subtotal.toLocaleString() }} €
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="scary-numbers-page__label">
+              🗺️ {{ $t('calculator.form.officeLocationLabel') }}
+            </h3>
+
+            <div>
+              <div class="scary-numbers-page__offices">
+                <div
+                  :class="[
+                    'scary-numbers-page__office',
+                    {
+                      'scary-numbers-page__office--selected':
+                        location === 'city'
+                    }
+                  ]"
+                  @click="setLocation('city')"
+                >
+                  <svg
+                    class="MuiSvgIcon-root MuiSvgIcon-colorPrimary"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    style="width: 80px; height: 80px"
+                  >
+                    <path
+                      d="M15 11V5l-3-3-3 3v2H3v14h18V11h-6zm-8 8H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm6 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm6 12h-2v-2h2v2zm0-4h-2v-2h2v2z"
+                    ></path>
+                  </svg>
+                  <p>{{ $t('calculator.form.officeLocationCentral') }}</p>
+                </div>
+                <div
+                  :class="[
+                    'scary-numbers-page__office',
+                    {
+                      'scary-numbers-page__office--selected':
+                        location === 'area'
+                    }
+                  ]"
+                  @click="setLocation('area')"
+                >
+                  <svg
+                    class="MuiSvgIcon-root MuiSvgIcon-colorDisabled"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    style="width: 80px; height: 80px"
+                  >
+                    <path
+                      d="M17 11V3H7v4H3v14h8v-4h2v4h8V11h-4zM7 19H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm4 4H9v-2h2v2zm0-4H9V9h2v2zm0-4H9V5h2v2zm4 8h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm4 12h-2v-2h2v2zm0-4h-2v-2h2v2z"
+                    ></path>
+                  </svg>
+                  <p>{{ $t('calculator.form.officeLocationArea') }}</p>
+                </div>
+                <div
+                  :class="[
+                    'scary-numbers-page__office',
+                    {
+                      'scary-numbers-page__office--selected':
+                        location === 'region'
+                    }
+                  ]"
+                  @click="setLocation('region')"
+                >
+                  <svg
+                    class="MuiSvgIcon-root MuiSvgIcon-colorDisabled"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    style="width: 80px; height: 80px"
+                  >
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+                  </svg>
+                  <p>{{ $t('calculator.form.officeLocationRegion') }}</p>
+                </div>
+                <div
+                  :class="[
+                    'scary-numbers-page__office',
+                    {
+                      'scary-numbers-page__office--selected':
+                        location === 'average'
+                    }
+                  ]"
+                  @click="setLocation('average')"
+                >
+                  <svg
+                    class="MuiSvgIcon-root MuiSvgIcon-colorDisabled"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    style="width: 80px; height: 80px"
+                  >
+                    <path d="M8.17 5.7L1 10.48V21h5v-8h4v8h5V10.25z"></path>
+                    <path
+                      d="M10 3v1.51l2 1.33L13.73 7H15v.85l2 1.34V11h2v2h-2v2h2v2h-2v4h6V3H10zm9 6h-2V7h2v2z"
+                    ></path>
+                  </svg>
+                  <p>{{ $t('calculator.form.officeLocationBoth') }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="scary-numbers-page__total scary-numbers-page__total--partial"
+            >
+              <h3 class="scary-numbers-page__results-title">
+                {{ $t('calculator.annualCost') }}
+              </h3>
+              <p class="scary-numbers-page__results-number--sm">
+                {{ locationFee.toLocaleString() }} €
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <div class="scary-numbers-page__employees-section">
+              <p>{{ $t('calculator.employeeDescription') }}</p>
+              <h3 class="scary-numbers-page__label">
+                🤷 {{ $t('calculator.form.employeesLabel') }}
+              </h3>
+              <div class="scary-numbers-page__employees">
+                <vue-slider
+                  v-model="employees"
+                  :min="1"
+                  :max="500"
+                  :marks="['1', '100', '200', '300', '400', '500']"
+                ></vue-slider>
+              </div>
+            </div>
+
+            <div class="scary-numbers-page__results-block">
+              <div class="scary-numbers-page__results">
+                <h3 class="scary-numbers-page__results-title">
+                  {{ $t('calculator.cost') }}
+                </h3>
+                <p class="scary-numbers-page__results-number">
+                  {{ total.toLocaleString() }} €
+                </p>
+
+                <h3 class="scary-numbers-page__results-title">
+                  {{ $t('calculator.savings') }}
+                </h3>
+                <p
+                  class="scary-numbers-page__results-number scary-numbers-page__results-number--saved"
+                >
+                  {{ savings.toLocaleString() }} €
+                </p>
+              </div>
+
+              <base-button
+                class="scary-numbers-page__button"
+                :url="signupLink"
+                >{{ $t('calculator.callToAction') }}</base-button
+              >
+            </div>
+
+            <div class="scary-numbers-page__call-to-action">
+              <h3 class="scary-numbers-page__contact">
+                {{ $t('calculator.contactText') }}
+              </h3>
+              <TheEmailCollector />
+              <p class="scary-numbers-page__info">
+                {{ $t('calculator.infos') }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </base-container>
+  </div>
+</template>
+
+<script>
+import getConfig from '~/services/getConfig'
+
+const weeksPerYear = 47
+const hourlyWage = 34
+const daysPerWeek = 5
+const costFactor = (weeksPerYear * hourlyWage * daysPerWeek) / 60
+// a constant : 3000€
+const transportation = 3000
+// Again, a constant : 1350€
+const setupFee = 1350
+// Again, a constant : 384€
+const homeFee = 384
+// Location Fees
+const locationFees = {
+  city: 20000,
+  area: 15000,
+  region: 10000,
+  average: 15000
+}
+
+export default {
+  data() {
+    const { links } = getConfig()
+
+    return {
+      time: 30, // 15min, 30min, or 60min,
+      employees: 20,
+      location: 'city', // city, area, region or average
+      signupLink: links.signup
+    }
+  },
+  head() {
+    const config = getConfig()
+    const pageTitle = this.$t('calculator.title')
+    const pageDescription = this.$t('calculator.meta_description')
+
+    return {
+      title: `${pageTitle} | ${config.defaultTitle}`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: pageDescription
+        },
+        {
+          hid: 'og:description',
+          name: 'og:description',
+          property: 'og:description',
+          content: pageDescription
+        },
+        {
+          hid: 'og:title',
+          name: 'og:title',
+          property: 'og:title',
+          content: `${pageTitle} | ${config.defaultTitle}`
+        }
+      ]
+    }
+  },
+  computed: {
+    wageCost() {
+      return costFactor * this.time
+    },
+    subtotal() {
+      return transportation + setupFee + homeFee + this.wageCost
+    },
+    locationFee() {
+      return locationFees[this.location]
+    },
+    total() {
+      return parseInt((this.subtotal + this.locationFee) * this.employees)
+    },
+    savings() {
+      return parseInt(this.total * 0.3)
+    }
+  },
+  methods: {
+    setTime(value) {
+      this.time = value
+    },
+    setLocation(value) {
+      this.location = value
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.scary-numbers-page {
+  display: block;
+
+  &__row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: $gutter;
+    padding-top: $space-xxl;
+
+    @media (max-width: $screen-md) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__row-half {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: $space-xxl;
+    align-items: flex-end;
+    grid-column-gap: $gutter;
+
+    @media (max-width: $screen-md) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__subtitle {
+    margin-bottom: $space-md;
+  }
+
+  &__description {
+    margin-bottom: $space-xxl;
+  }
+
+  &__label {
+    margin-bottom: $space-md;
+    font-size: $font-size-xs;
+  }
+
+  &__times {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: $space-sm;
+    align-items: center;
+
+    @media (max-width: $screen-md) {
+      grid-template-columns: 1fr;
+      margin-bottom: $space-md;
+    }
+  }
+
+  &__employees {
+    margin-bottom: $space-xxl;
+  }
+
+  &__offices {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: $space-md;
+    align-items: center;
+
+    @media (max-width: $screen-md) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__time,
+  &__office {
+    border: 2px solid $color-blue-grey-lighter;
+    border-radius: $border-radius-card;
+    padding: $space-md;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+
+    &:hover {
+      border-color: $color-blue-grey;
+    }
+
+    p {
+      font-size: $font-size-xxxs;
+    }
+
+    svg {
+      fill: $color-blue-grey;
+      width: 40px !important;
+      height: 40px !important;
+    }
+
+    &--selected {
+      border-color: $color-blue;
+      color: $color-blue;
+
+      svg {
+        fill: $color-blue;
+      }
+    }
+  }
+
+  &__tip {
+    padding: $space-md;
+
+    p {
+      font-size: $font-size-xxs !important;
+    }
+
+    &-title {
+      margin-bottom: $space-xs;
+    }
+  }
+
+  &__tips {
+    margin-top: $space-md;
+    margin-bottom: $space-xxl;
+    max-height: 50vh;
+    opacity: 1;
+  }
+
+  &__results {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: $gutter;
+    margin-top: $space-xxxl;
+    align-items: center;
+    border-radius: $border-radius-lg;
+    padding: $space-sm;
+    background-color: $color-blue-grey-lighter;
+
+    @media (max-width: $screen-md) {
+      grid-template-columns: 1fr;
+      grid-gap: $space-md;
+    }
+
+    &-title {
+      font-size: $font-size-xxs;
+    }
+
+    &-number {
+      font-size: $font-size-xl;
+      text-align: right;
+      color: $color-red;
+
+      &--sm {
+        font-size: $font-size-xs;
+        font-weight: 700;
+      }
+
+      @media (max-width: $screen-md) {
+        text-align: left;
+      }
+
+      &--saved {
+        color: $color-green-dark;
+      }
+    }
+  }
+
+  &__call-to-action {
+    padding-top: $space-xxl;
+    margin-top: $space-xl;
+    border-top: 2px solid $color-blue-grey-lighter;
+
+    &-text {
+      margin-bottom: $space-md;
+    }
+  }
+
+  &__info {
+    margin-top: $space-xxxl;
+    font-size: $font-size-xxs;
+  }
+
+  &__total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &--partial {
+      margin-top: $space-lg;
+      margin-bottom: $space-xl;
+      border-radius: $border-radius-lg;
+      padding: $space-sm;
+      background-color: $color-blue-grey-lighter;
+    }
+  }
+
+  &__employees-section {
+    padding-top: $space-sm;
+    margin-top: $space-lg;
+
+    p {
+      margin-bottom: $space-lg;
+    }
+  }
+
+  &__button {
+    margin-top: $space-xl;
+    display: block;
+  }
+
+  &__contact {
+    margin-bottom: $space-md;
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.3s ease;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  max-height: 0;
+}
+</style>
